@@ -1,10 +1,26 @@
+#[warn(unused_must_use)]
+#[warn(unused_imports)]
+use ark_std::{end_timer, start_timer};
+use rand::rngs::OsRng;
 use halo2_proofs::{
     circuit::{Layouter, SimpleFloorPlanner, Value},
-    plonk::{Circuit, ConstraintSystem, Error, Column, Advice, Selector}, dev::MockProver,
+    plonk::{Circuit, ConstraintSystem, Error, Column, Advice, Selector}, dev::MockProver, poly::kzg::commitment::ParamsKZG,
 };
-use halo2curves::FieldExt;
+use halo2curves::{FieldExt, bn256::{Bn256, G1Affine}};
 use std::{marker::PhantomData, time::Instant};
+use std::io::Write;
 use halo2_proofs::poly::Rotation;
+use halo2_proofs::{
+    plonk::*,
+    poly::commitment::ParamsProver,
+    transcript::{Blake2bRead, Blake2bWrite, Challenge255},
+    poly::kzg::{
+        commitment::KZGCommitmentScheme,
+        multiopen::{ProverSHPLONK, VerifierSHPLONK},
+        strategy::SingleStrategy,
+    },
+    transcript::{TranscriptReadBuffer, TranscriptWriterBuffer},
+};
 mod lib;
 
 
@@ -119,6 +135,7 @@ impl<F:FieldExt> Circuit<F> for Accdotcircuit<F>
 
 fn main() {
     let k = 10;
+    let mut rng = OsRng;
     use lib::RandomInputGenerator;
     let gen = RandomInputGenerator::new(IMLEN, KERLEN);
     let img = gen.one_dimage;
@@ -128,16 +145,47 @@ fn main() {
         kernel: ker
     };
 
-    let start = Instant::now();
-    let prover = MockProver::run(k, &circuit, vec![]);
-    
-    // prover.unwrap().assert_satisfied();
-    match prover.unwrap().verify(){
-        Ok(()) => { println!("Yes proved!")},
-        Err(_) => {println!("Not proved!")}
-    };
-    let duration = start.elapsed();
+    let params = ParamsKZG::<Bn256>::setup(k, &mut rng);
 
-    println!("Time taken by MockProver: {:?}", duration);
+    let vk_time_start = Instant::now();
+    let vk = keygen_vk(&params, &circuit).unwrap();
+    let vk_time = vk_time_start.elapsed();
+
+    let pk_time_start = Instant::now();
+    let pk = keygen_pk(&params, vk, &circuit).unwrap();
+    let pk_time = pk_time_start.elapsed();;
+
+    let proof_time_start = Instant::now();
+    let mut transcript = Blake2bWrite::<_, _, Challenge255<_>>::init(vec![]);
+    create_proof::<
+        KZGCommitmentScheme<Bn256>,
+        ProverSHPLONK<'_, Bn256>,
+        Challenge255<G1Affine>,
+        _,
+        Blake2bWrite<Vec<u8>, G1Affine, Challenge255<G1Affine>>,
+        _,
+    >(&params, &pk, &[circuit], &[&[]], rng, &mut transcript);
+    let proof = transcript.finalize();
+    let proof_time = proof_time_start.elapsed();
+
+
+    let verify_time_start = Instant::now();
+    let verifier_params = params.verifier_params();
+    let strategy = SingleStrategy::new(&params);
+    let mut transcript = Blake2bRead::<_, _, Challenge255<_>>::init(&proof[..]);
+    assert!(verify_proof::<
+        KZGCommitmentScheme<Bn256>,
+        VerifierSHPLONK<'_, Bn256>,
+        Challenge255<G1Affine>,
+        Blake2bRead<&[u8], G1Affine, Challenge255<G1Affine>>,
+        SingleStrategy<'_, Bn256>,
+    >(verifier_params, pk.get_vk(), strategy, &[&[]], &mut transcript)
+    .is_ok());
+    let verify_time = verify_time_start.elapsed();
+
+    println!("Time to generate vk {:?}", vk_time);
+    println!("Time to generate pk {:?}", pk_time);
+    println!("Prover Time {:?}", proof_time);
+    println!("Verifier Time {:?}", verify_time);
 
 }

@@ -1,0 +1,10 @@
+/Users/siddharthaalluri/Desktop/0xPARC/experiments_with_conv/accum_dot/target/debug/deps/half-cbb641b5b1c0d46d.rmeta: /Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/lib.rs /Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/bfloat.rs /Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/bfloat/convert.rs /Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/binary16.rs /Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/binary16/convert.rs /Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/slice.rs
+
+/Users/siddharthaalluri/Desktop/0xPARC/experiments_with_conv/accum_dot/target/debug/deps/half-cbb641b5b1c0d46d.d: /Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/lib.rs /Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/bfloat.rs /Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/bfloat/convert.rs /Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/binary16.rs /Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/binary16/convert.rs /Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/slice.rs
+
+/Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/lib.rs:
+/Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/bfloat.rs:
+/Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/bfloat/convert.rs:
+/Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/binary16.rs:
+/Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/binary16/convert.rs:
+/Users/siddharthaalluri/.cargo/registry/src/github.com-1ecc6299db9ec823/half-1.8.2/src/slice.rs:

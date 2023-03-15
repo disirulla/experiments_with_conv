@@ -1,0 +1,3 @@
+cargo:rerun-if-changed=build/main.rs
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=/Users/siddharthaalluri/Desktop/0xPARC/experiments_with_conv/accum_dot/target/release/build/typenum-37af77cb10617353/out/consts.rs
+cargo:rustc-env=TYPENUM_BUILD_OP=/Users/siddharthaalluri/Desktop/0xPARC/experiments_with_conv/accum_dot/target/release/build/typenum-37af77cb10617353/out/op.rs
