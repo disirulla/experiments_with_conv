@@ -1,0 +1,11 @@
+group,function,value,throughput_num,throughput_type,sample_measured_value,unit,iteration_count
+dot,KeyGenForAccumConv,512,512,elements,111380193.0,ns,13
+dot,KeyGenForAccumConv,512,512,elements,187912625.0,ns,26
+dot,KeyGenForAccumConv,512,512,elements,350557815.0,ns,39
+dot,KeyGenForAccumConv,512,512,elements,346486115.0,ns,52
+dot,KeyGenForAccumConv,512,512,elements,529655090.0,ns,65
+dot,KeyGenForAccumConv,512,512,elements,569446632.0,ns,78
+dot,KeyGenForAccumConv,512,512,elements,595199870.0,ns,91
+dot,KeyGenForAccumConv,512,512,elements,726383328.0,ns,104
+dot,KeyGenForAccumConv,512,512,elements,893112373.0,ns,117
+dot,KeyGenForAccumConv,512,512,elements,821655654.0,ns,130

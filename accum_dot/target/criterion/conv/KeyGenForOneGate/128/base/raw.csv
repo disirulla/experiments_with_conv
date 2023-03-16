@@ -1,0 +1,11 @@
+group,function,value,throughput_num,throughput_type,sample_measured_value,unit,iteration_count
+conv,KeyGenForOneGate,128,128,elements,33178131296.0,ns,1
+conv,KeyGenForOneGate,128,128,elements,33938947246.0,ns,1
+conv,KeyGenForOneGate,128,128,elements,34429246038.0,ns,1
+conv,KeyGenForOneGate,128,128,elements,32653471271.0,ns,1
+conv,KeyGenForOneGate,128,128,elements,31850396409.0,ns,1
+conv,KeyGenForOneGate,128,128,elements,33314118588.0,ns,1
+conv,KeyGenForOneGate,128,128,elements,32571248898.0,ns,1
+conv,KeyGenForOneGate,128,128,elements,33425394732.0,ns,1
+conv,KeyGenForOneGate,128,128,elements,33366813128.0,ns,1
+conv,KeyGenForOneGate,128,128,elements,60166012026.0,ns,1
